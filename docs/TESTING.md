@@ -80,3 +80,9 @@ Collection 包含 `baseUrl`（預設 `http://localhost:3001`）、`token`、`ses
 匯入 Collection 後，建議手動依序執行：Auth 登入 → Products 商品列表（自動儲存 productId）→ Cart 加入購物車 → Cart 查看（儲存 cartItemId）→ Orders 建立（儲存 orderId）→ 查詢訂單。收件與配送欄位已提供可修改的範例。
 
 Collection 同時包含管理員新增、修改、刪除及模擬付款等全部 OpenAPI 操作；它是 API 操作集合，不是無副作用的整套 Collection Runner 測試。綠界信用卡與 OTP 全流程請使用 `npm run test:e2e`。
+
+## GitHub Actions
+
+`.github/workflows/test.yml` 在 push、pull request 時自動執行，也可在 Actions 頁面手動觸發。使用 Ubuntu、Node.js 22、npm 快取及 `npm ci` 安裝鎖定版本的依賴。
+
+Workflow 分開顯示 `Unit Test`（`npm run test:unit`）與 `Integration Test`（`npm run test:integration`）兩個步驟。測試失敗會使工作失敗，不執行 Playwright、不啟動前後端服務，也不需要設定 GitHub Secrets。整合測試仍使用記憶體 SQLite 與測試付款回應。
