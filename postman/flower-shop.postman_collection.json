@@ -1,0 +1,4602 @@
+{
+  "_": {
+    "postman_id": "09225243-848c-4fea-aca1-a15690f25d5c"
+  },
+  "item": [
+    {
+      "id": "25989a5d-589b-46cf-b569-f8cc97526310",
+      "name": "Admin Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1006e4ef-4116-45cb-ab6d-7b10cbd7fd8b",
+          "name": "後台訂單列表",
+          "request": {
+            "name": "後台訂單列表",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "paid"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "0a11f4a4-7a39-4cab-993b-f70cffbd15a7",
+              "name": "成功",
+              "originalRequest": {
+                "name": "後台訂單列表",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "paid"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"orders\": [\n      {\n        \"id\": \"string\",\n        \"order_no\": \"string\",\n        \"user_id\": \"string\",\n        \"recipient_name\": \"string\",\n        \"recipient_email\": \"string\",\n        \"total_amount\": 3972,\n        \"status\": \"string\",\n        \"created_at\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"order_no\": \"string\",\n        \"user_id\": \"string\",\n        \"recipient_name\": \"string\",\n        \"recipient_email\": \"string\",\n        \"total_amount\": 6263,\n        \"status\": \"string\",\n        \"created_at\": \"string\"\n      }\n    ],\n    \"pagination\": {\n      \"total\": 4761,\n      \"page\": 3303,\n      \"limit\": 7291,\n      \"totalPages\": 4282\n    }\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "af801a19-6986-46f4-88ba-13ee6108f670",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0424656d-5481-4922-a76a-4f56c2967062",
+          "name": "後台訂單詳情",
+          "request": {
+            "name": "後台訂單詳情",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "ae61f9a7-48cd-4147-9425-a51811a50caf",
+              "name": "成功",
+              "originalRequest": {
+                "name": "後台訂單詳情",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"order_no\": \"string\",\n    \"user_id\": \"string\",\n    \"recipient_name\": \"string\",\n    \"recipient_email\": \"string\",\n    \"recipient_address\": \"string\",\n    \"total_amount\": 4638,\n    \"status\": \"string\",\n    \"created_at\": \"string\",\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"product_id\": \"string\",\n        \"product_name\": \"string\",\n        \"product_price\": 2059,\n        \"quantity\": 7218\n      },\n      {\n        \"id\": \"string\",\n        \"product_id\": \"string\",\n        \"product_name\": \"string\",\n        \"product_price\": 139,\n        \"quantity\": 1603\n      }\n    ],\n    \"user\": {\n      \"name\": \"string\",\n      \"email\": \"string\"\n    }\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "0657f7b7-a6ed-4b8f-ae58-318dc259ce51",
+              "name": "訂單不存在",
+              "originalRequest": {
+                "name": "後台訂單詳情",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5f140ec0-e23c-4b79-b424-6443668453e2",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e32f91a4-8db0-4764-bbbb-87ec280c89f3",
+      "name": "Admin Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e4b6bbef-f8e0-438a-9ad0-ac76ae82d7a1",
+          "name": "後台商品列表",
+          "request": {
+            "name": "後台商品列表",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "f02931aa-4e18-41a4-b498-5df1aa63596b",
+              "name": "成功",
+              "originalRequest": {
+                "name": "後台商品列表",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"products\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"price\": 2234,\n        \"stock\": 8073,\n        \"image_url\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"price\": 957,\n        \"stock\": 3751,\n        \"image_url\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\"\n      }\n    ],\n    \"pagination\": {\n      \"total\": 3044,\n      \"page\": 1545,\n      \"limit\": 9893,\n      \"totalPages\": 1762\n    }\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "65cb5906-359d-44c7-aaae-6198ede1ddb8",
+              "name": "未登入",
+              "originalRequest": {
+                "name": "後台商品列表",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "5e625ccb-81c5-4f36-a162-30590cb75f81",
+              "name": "權限不足",
+              "originalRequest": {
+                "name": "後台商品列表",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2f92ae68-3534-4496-a1a0-eea952e912e6",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ba19fc0-7f55-4e40-936e-0ca9e6287721",
+          "name": "新增商品",
+          "request": {
+            "name": "新增商品",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"price\": 5908,\n  \"stock\": 7628,\n  \"description\": \"string\",\n  \"image_url\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "ba5b3205-78e1-483f-b99e-3b94fb553a44",
+              "name": "商品新增成功",
+              "originalRequest": {
+                "name": "新增商品",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"price\": 5908,\n  \"stock\": 7628,\n  \"description\": \"string\",\n  \"image_url\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"price\": 1265,\n    \"stock\": 121,\n    \"image_url\": \"string\",\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\"\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "4e2b0102-37b0-4220-aebd-74225113d391",
+              "name": "參數錯誤",
+              "originalRequest": {
+                "name": "新增商品",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"price\": 5908,\n  \"stock\": 7628,\n  \"description\": \"string\",\n  \"image_url\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6d2060b7-6dd7-4e0a-8ee9-0fea1e3d52d9",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a570dafd-4f40-4c01-b47e-b392d3f4da19",
+          "name": "編輯商品",
+          "request": {
+            "name": "編輯商品",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{productId}}",
+                  "key": "id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"price\": 2537,\n  \"stock\": 4728,\n  \"image_url\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "c4fb9fcd-ec37-4493-9cec-0cd567ce56b2",
+              "name": "商品更新成功",
+              "originalRequest": {
+                "name": "編輯商品",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{productId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"price\": 2537,\n  \"stock\": 4728,\n  \"image_url\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"price\": 1265,\n    \"stock\": 121,\n    \"image_url\": \"string\",\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\"\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "b428fa45-dd5c-4fbc-b1f5-35f83ee3045d",
+              "name": "商品不存在",
+              "originalRequest": {
+                "name": "編輯商品",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{productId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"price\": 2537,\n  \"stock\": 4728,\n  \"image_url\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "62f3c71b-73ae-4acc-80b5-01a78e73b631",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37e7062f-eef1-4696-b8c7-8943ecde0fb5",
+          "name": "刪除商品",
+          "request": {
+            "name": "刪除商品",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{productId}}",
+                  "key": "id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "543f3a82-60af-4f30-8b6e-a9d472d0b006",
+              "name": "商品刪除成功",
+              "originalRequest": {
+                "name": "刪除商品",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{productId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "e48fb1d3-ab72-46d7-b9a1-5720e14b574c",
+              "name": "商品不存在",
+              "originalRequest": {
+                "name": "刪除商品",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{productId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "f35b2121-2011-4b8c-9cd2-4303418471c8",
+              "name": "商品存在未完成訂單，無法刪除",
+              "originalRequest": {
+                "name": "刪除商品",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{productId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0289e346-b67e-4e93-b908-117d65908670",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "45176914-e018-4515-90df-0332ae7a1f10",
+      "name": "Auth",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7409f6ca-6abd-4374-a1c5-ae14c2d60653",
+          "name": "註冊新帳號",
+          "request": {
+            "name": "註冊新帳號",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test-{{$guid}}@example.com\",\n  \"password\": \"password123\",\n  \"name\": \"Postman Test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "5941f2b0-7ca5-4a5d-8aa0-53d412a26233",
+              "name": "註冊成功",
+              "originalRequest": {
+                "name": "註冊新帳號",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"test-{{$guid}}@example.com\",\n  \"password\": \"password123\",\n  \"name\": \"Postman Test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"user\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"name\": \"string\",\n      \"role\": \"string\"\n    },\n    \"token\": \"string\"\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "8635d5d8-b228-4021-a609-64b4158954f5",
+              "name": "參數缺失或格式錯誤",
+              "originalRequest": {
+                "name": "註冊新帳號",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"test-{{$guid}}@example.com\",\n  \"password\": \"password123\",\n  \"name\": \"Postman Test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "ca2333dc-ada3-42ac-824e-e0049a98b1a6",
+              "name": "Email 已被註冊",
+              "originalRequest": {
+                "name": "註冊新帳號",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"test-{{$guid}}@example.com\",\n  \"password\": \"password123\",\n  \"name\": \"Postman Test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "543aa91e-a3a9-4a4f-9836-06fc43a02f4c",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a6aae06-4364-47b3-8005-71989c26c5cc",
+          "name": "登入",
+          "request": {
+            "name": "登入",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@hexschool.com\",\n  \"password\": \"12345678\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "b0803336-5fd7-44b5-9bac-8b7a2b1842be",
+              "name": "登入成功",
+              "originalRequest": {
+                "name": "登入",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@hexschool.com\",\n  \"password\": \"12345678\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"user\": {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"name\": \"string\",\n      \"role\": \"string\"\n    },\n    \"token\": \"string\"\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "bd2a82b3-b3df-4eda-9553-a829d8a4409b",
+              "name": "參數缺失",
+              "originalRequest": {
+                "name": "登入",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@hexschool.com\",\n  \"password\": \"12345678\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "27f79f26-0492-4c0b-aa3f-b9f9a95bd3d0",
+              "name": "Email 或密碼錯誤",
+              "originalRequest": {
+                "name": "登入",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@hexschool.com\",\n  \"password\": \"12345678\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "219a3a34-d56e-48e2-8d4d-cbbb36f55e1e",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });",
+                  "pm.test(\"Login succeeded\", () => pm.response.to.have.status(200));",
+                  "if (pm.response.code === 200 && body.data && body.data.token) pm.collectionVariables.set(\"token\", body.data.token);"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e88ee4d0-acf4-4d20-9ff7-5de581cc683c",
+          "name": "取得個人資料",
+          "request": {
+            "name": "取得個人資料",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "auth",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "cc18f70e-4ce9-4135-84eb-af4da89a6b9d",
+              "name": "成功",
+              "originalRequest": {
+                "name": "取得個人資料",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"email\": \"string\",\n    \"name\": \"string\",\n    \"role\": \"string\",\n    \"created_at\": \"string\"\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "fcf50e8a-f1e1-4771-b070-0c6fa5786517",
+              "name": "未登入或 token 無效",
+              "originalRequest": {
+                "name": "取得個人資料",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0bb03b7f-c778-4ef5-9333-868a69fa6c80",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0a722b52-eae3-41d8-9a80-e84ec9f70a90",
+      "name": "Cart",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77578727-048d-47cb-97a8-5c5e833c8611",
+          "name": "查看購物車",
+          "request": {
+            "name": "查看購物車",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "cart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Session-Id",
+                "value": "{{sessionId}}"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "b95d77b2-c25d-47d1-952d-a0e5bce7d814",
+              "name": "成功",
+              "originalRequest": {
+                "name": "查看購物車",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"product_id\": \"string\",\n        \"quantity\": 4051,\n        \"product\": {\n          \"name\": \"string\",\n          \"price\": 755,\n          \"stock\": 6810,\n          \"image_url\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"product_id\": \"string\",\n        \"quantity\": 3972,\n        \"product\": {\n          \"name\": \"string\",\n          \"price\": 3908,\n          \"stock\": 6635,\n          \"image_url\": \"string\"\n        }\n      }\n    ],\n    \"total\": 8407\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "16fd0453-5d28-4896-b065-06fde15b16cf",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });",
+                  "if (body.data && body.data.items.length) pm.collectionVariables.set(\"cartItemId\", body.data.items[0].id);"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a737c982-2a5c-4cb9-8043-9c7395b5f0e8",
+          "name": "加入商品到購物車",
+          "request": {
+            "name": "加入商品到購物車",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "cart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Session-Id",
+                "value": "{{sessionId}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "d25115ec-ca09-4b42-9e53-254523bb2605",
+              "name": "已加入購物車",
+              "originalRequest": {
+                "name": "加入商品到購物車",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"product_id\": \"string\",\n    \"quantity\": 8499\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "3a4dda66-1e0c-471d-9a8e-c27624d73be1",
+              "name": "參數缺失或庫存不足",
+              "originalRequest": {
+                "name": "加入商品到購物車",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "25e8f015-4871-404c-8405-734a64b1d694",
+              "name": "商品不存在",
+              "originalRequest": {
+                "name": "加入商品到購物車",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "618174d4-efcb-4e4b-8a74-d833eebdf38b",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2de6ce0d-73a0-414a-a399-3bd1e9b7ac77",
+          "name": "修改購物車商品數量",
+          "request": {
+            "name": "修改購物車商品數量",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "string",
+                  "key": "itemId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Session-Id",
+                "value": "{{sessionId}}"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 4856\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "b34e1cb0-a908-47d9-957b-75684e083779",
+              "name": "數量已更新",
+              "originalRequest": {
+                "name": "修改購物車商品數量",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "string",
+                      "key": "itemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 4856\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"product_id\": \"string\",\n    \"quantity\": 8499\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "32ba04fa-6d2d-43c5-8015-69a0e2dd3b0a",
+              "name": "庫存不足",
+              "originalRequest": {
+                "name": "修改購物車商品數量",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "string",
+                      "key": "itemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 4856\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "612a0349-ba1c-4d1c-828c-d731cdc20e4b",
+              "name": "購物車項目不存在",
+              "originalRequest": {
+                "name": "修改購物車商品數量",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "string",
+                      "key": "itemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 4856\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "19897359-8091-4d6d-bdab-2d82632c9aac",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "855d4255-7874-4434-a139-8cd17d3c56b5",
+          "name": "移除購物車項目",
+          "request": {
+            "name": "移除購物車項目",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "string",
+                  "key": "itemId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Session-Id",
+                "value": "{{sessionId}}"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "66c815a0-10b5-4f08-8ce1-75acafb3f33a",
+              "name": "已從購物車移除",
+              "originalRequest": {
+                "name": "移除購物車項目",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "string",
+                      "key": "itemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "de21f4d7-db07-4845-a9e8-25b790357fc1",
+              "name": "購物車項目不存在",
+              "originalRequest": {
+                "name": "移除購物車項目",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "string",
+                      "key": "itemId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Session-Id",
+                    "value": "{{sessionId}}"
+                  }
+                ],
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "58ea2dc9-5e62-4ea3-b5f8-107b0b7c7b03",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "33b98ba2-9d27-40aa-9821-1cb13e59c432",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1caf0e6-619b-4302-8dc3-0b243d224c25",
+          "name": "從購物車建立訂單",
+          "request": {
+            "name": "從購物車建立訂單",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipientName\": \"Postman Test\",\n  \"recipientEmail\": \"postman@example.com\",\n  \"recipientAddress\": \"台北市中正區測試路123號\",\n  \"shippingMethod\": \"home\",\n  \"isRemote\": false,\n  \"isExpress\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "4b2d0b77-6c14-4e4d-b6d9-f9d909914986",
+              "name": "訂單建立成功",
+              "originalRequest": {
+                "name": "從購物車建立訂單",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipientName\": \"Postman Test\",\n  \"recipientEmail\": \"postman@example.com\",\n  \"recipientAddress\": \"台北市中正區測試路123號\",\n  \"shippingMethod\": \"home\",\n  \"isRemote\": false,\n  \"isExpress\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"order_no\": \"string\",\n    \"subtotal\": 8170,\n    \"shipping_fee\": 6420,\n    \"shipping_method\": \"string\",\n    \"is_remote\": 6509,\n    \"is_express\": 7815,\n    \"total_amount\": 387,\n    \"status\": \"string\",\n    \"items\": [\n      {\n        \"product_name\": \"string\",\n        \"product_price\": 8618,\n        \"quantity\": 5844\n      },\n      {\n        \"product_name\": \"string\",\n        \"product_price\": 1477,\n        \"quantity\": 3092\n      }\n    ],\n    \"created_at\": \"string\"\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "2808397e-8b43-460a-984a-aa858f62e696",
+              "name": "購物車為空、庫存不足、收件資訊或配送條件無效",
+              "originalRequest": {
+                "name": "從購物車建立訂單",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipientName\": \"Postman Test\",\n  \"recipientEmail\": \"postman@example.com\",\n  \"recipientAddress\": \"台北市中正區測試路123號\",\n  \"shippingMethod\": \"home\",\n  \"isRemote\": false,\n  \"isExpress\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0db1e6c3-fdf5-4b62-85f4-42ff73800286",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });",
+                  "if (pm.response.code === 201 && body.data) pm.collectionVariables.set(\"orderId\", body.data.id);"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69d171bf-010a-41c4-a253-40a398117d78",
+          "name": "自己的訂單列表",
+          "request": {
+            "name": "自己的訂單列表",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "f89b11d8-4b5a-43c2-b030-78e5f6c6d40c",
+              "name": "成功",
+              "originalRequest": {
+                "name": "自己的訂單列表",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"orders\": [\n      {\n        \"id\": \"string\",\n        \"order_no\": \"string\",\n        \"subtotal\": 3854,\n        \"shipping_fee\": 1895,\n        \"shipping_method\": \"string\",\n        \"is_remote\": 5773,\n        \"is_express\": 8018,\n        \"total_amount\": 6271,\n        \"status\": \"string\",\n        \"created_at\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"order_no\": \"string\",\n        \"subtotal\": 3398,\n        \"shipping_fee\": 2241,\n        \"shipping_method\": \"string\",\n        \"is_remote\": 1115,\n        \"is_express\": 7702,\n        \"total_amount\": 5214,\n        \"status\": \"string\",\n        \"created_at\": \"string\"\n      }\n    ]\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cb1372a1-fd79-425e-b86a-b7ac218981d7",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51590126-4057-444e-8f18-89ba17d037d1",
+          "name": "訂單詳情",
+          "request": {
+            "name": "訂單詳情",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "dbf3ef60-ccd0-401e-a3c1-68346cf6180d",
+              "name": "成功",
+              "originalRequest": {
+                "name": "訂單詳情",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"order_no\": \"string\",\n    \"recipient_name\": \"string\",\n    \"recipient_email\": \"string\",\n    \"recipient_address\": \"string\",\n    \"subtotal\": 7172,\n    \"shipping_fee\": 8587,\n    \"shipping_method\": \"string\",\n    \"is_remote\": 5142,\n    \"is_express\": 972,\n    \"total_amount\": 2329,\n    \"status\": \"string\",\n    \"created_at\": \"string\",\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"product_id\": \"string\",\n        \"product_name\": \"string\",\n        \"product_price\": 8791,\n        \"quantity\": 4610\n      },\n      {\n        \"id\": \"string\",\n        \"product_id\": \"string\",\n        \"product_name\": \"string\",\n        \"product_price\": 9876,\n        \"quantity\": 5641\n      }\n    ]\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "e8205169-1612-4a9c-aee4-8b6ba9fc28e1",
+              "name": "訂單不存在",
+              "originalRequest": {
+                "name": "訂單詳情",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "add588c4-e656-4399-8b4c-6b4cd53b6e00",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b30758d2-da28-4d2e-96cb-c3dbe5ecb086",
+          "name": "模擬付款（更新訂單付款狀態）",
+          "request": {
+            "name": "模擬付款（更新訂單付款狀態）",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "orders",
+                ":id",
+                "pay"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"success\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "a12d0873-718e-4bba-b8cd-55d24e514dde",
+              "name": "付款狀態更新成功",
+              "originalRequest": {
+                "name": "模擬付款（更新訂單付款狀態）",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "pay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"success\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"order_no\": \"string\",\n    \"subtotal\": 5509,\n    \"shipping_fee\": 2621,\n    \"shipping_method\": \"string\",\n    \"is_remote\": 2629,\n    \"is_express\": 1544,\n    \"total_amount\": 630,\n    \"status\": \"string\",\n    \"created_at\": \"string\",\n    \"items\": [\n      {\n        \"product_name\": \"string\",\n        \"product_price\": 3400,\n        \"quantity\": 1603\n      },\n      {\n        \"product_name\": \"string\",\n        \"product_price\": 4461,\n        \"quantity\": 7935\n      }\n    ]\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "c2e552ab-bd2d-465d-8580-ebe8c9b55b37",
+              "name": "action 無效或訂單狀態不是 pending",
+              "originalRequest": {
+                "name": "模擬付款（更新訂單付款狀態）",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "pay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"success\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "be0c3c46-7008-4bf8-afd6-dfc6ecc46151",
+              "name": "訂單不存在",
+              "originalRequest": {
+                "name": "模擬付款（更新訂單付款狀態）",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "pay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"success\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8716f350-398e-4475-a071-912d73f2ca8c",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7263dee5-b389-438b-9522-883608e8f0ef",
+          "name": "建立綠界 AIO 付款參數",
+          "request": {
+            "name": "建立綠界 AIO 付款參數",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "orders",
+                ":id",
+                "ecpay"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "a276d3c2-0a7a-48c9-80e4-a1786a7592a8",
+              "name": "成功，回傳 actionUrl 與表單參數（含 CheckMacValue）",
+              "originalRequest": {
+                "name": "建立綠界 AIO 付款參數",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "ecpay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "c19b596f-46dd-403c-ba5f-c43f9b28e4be",
+              "name": "訂單狀態不是 pending",
+              "originalRequest": {
+                "name": "建立綠界 AIO 付款參數",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "ecpay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "25006a40-732e-43ee-8ae7-07ad067dfa23",
+              "name": "訂單不存在",
+              "originalRequest": {
+                "name": "建立綠界 AIO 付款參數",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "ecpay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d31cb9c2-28fa-4408-90af-84877de399f8",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60abc438-429c-44ad-ad8c-a924c75f4e40",
+          "name": "主動查詢綠界付款結果（QueryTradeInfo）",
+          "request": {
+            "name": "主動查詢綠界付款結果（QueryTradeInfo）",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "orders",
+                ":id",
+                "ecpay",
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "type": "string",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "53c47a88-76ad-405e-b42c-b9eea9e48a6d",
+              "name": "查詢成功，訂單狀態已更新（若付款成功則改為 paid）",
+              "originalRequest": {
+                "name": "主動查詢綠界付款結果（QueryTradeInfo）",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "ecpay",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "81b66a5f-036f-429e-ad97-b3f418c9d453",
+              "name": "訂單不存在",
+              "originalRequest": {
+                "name": "主動查詢綠界付款結果（QueryTradeInfo）",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "ecpay",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "5549e5d7-7eb9-419b-a246-d427bb9cc153",
+              "name": "綠界 API 查詢失敗",
+              "originalRequest": {
+                "name": "主動查詢綠界付款結果（QueryTradeInfo）",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "orders",
+                    ":id",
+                    "ecpay",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{orderId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "type": "string",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4720f7f7-e7c0-4c6e-9cf4-922b915ddc93",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3781dbf0-fcc4-420d-a8bc-0c2555657f26",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b70d450-8276-45f8-b686-1eda0b41b829",
+          "name": "取得商品列表",
+          "request": {
+            "name": "取得商品列表",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "722dc354-ffeb-46a6-8907-4652cd433e80",
+              "name": "成功",
+              "originalRequest": {
+                "name": "取得商品列表",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"products\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"price\": 2234,\n        \"stock\": 8073,\n        \"image_url\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"price\": 957,\n        \"stock\": 3751,\n        \"image_url\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\"\n      }\n    ],\n    \"pagination\": {\n      \"total\": 3044,\n      \"page\": 1545,\n      \"limit\": 9893,\n      \"totalPages\": 1762\n    }\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6d6414df-0a7b-406b-8c75-5df04139c358",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });",
+                  "if (body.data && body.data.products.length) pm.collectionVariables.set(\"productId\", body.data.products[0].id);"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7eff4718-4c80-4abe-b80f-1bab855e2140",
+          "name": "取得商品詳情",
+          "request": {
+            "name": "取得商品詳情",
+            "description": {
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{productId}}",
+                  "key": "id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            }
+          },
+          "response": [
+            {
+              "_": {
+                "postman_previewlanguage": "json"
+              },
+              "id": "11263b26-7688-46f6-919b-997270f87493",
+              "name": "成功",
+              "originalRequest": {
+                "name": "取得商品詳情",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{productId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"price\": 1265,\n    \"stock\": 121,\n    \"image_url\": \"string\",\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\"\n  },\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": []
+            },
+            {
+              "_": {
+                "postman_previewlanguage": "text"
+              },
+              "id": "4bc8651e-38ee-4ec9-b838-c3881f5b1e69",
+              "name": "商品不存在",
+              "originalRequest": {
+                "name": "取得商品詳情",
+                "description": {
+                  "type": "text/plain"
+                },
+                "url": {
+                  "path": [
+                    "api",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{productId}}",
+                      "key": "id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "auth": {
+                  "type": "noauth",
+                  "noauth": []
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cbeb7d6d-6084-40bf-9317-1529f74645d4",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response is JSON\", () => pm.response.to.be.json);",
+                  "const body = pm.response.json();",
+                  "pm.test(\"Response envelope\", () => { pm.expect(body).to.have.all.keys(\"data\", \"error\", \"message\"); });"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "type": "string",
+        "value": "{{token}}",
+        "key": "token"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "c26ae849-ab36-4678-a733-852e182d5f26",
+        "type": "text/javascript",
+        "exec": [
+          "if (!pm.collectionVariables.get(\"sessionId\")) pm.collectionVariables.set(\"sessionId\", pm.variables.replaceIn(\"{{$guid}}\"));"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:3001",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "sessionId"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "productId"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "cartItemId"
+    },
+    {
+      "type": "string",
+      "value": "",
+      "key": "orderId"
+    }
+  ],
+  "info": {
+    "_postman_id": "09225243-848c-4fea-aca1-a15690f25d5c",
+    "name": "花卉電商 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "由 openapi.json 自動產生。先執行 Auth 登入；JWT 自動儲存。可依序取得商品、加入購物車、建立訂單與查詢。綠界信用卡與 OTP 操作使用 Playwright E2E。",
+      "type": "text/plain"
+    }
+  }
+}

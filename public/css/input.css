@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dark forest green palette */
+  --color-forest-dark: #0D1F16;
+  --color-forest-mid: #162D20;
+  --color-forest-deep: #0A180F;
+  --color-forest-border: #2A4035;
+  --color-forest-subtle: #1E3A28;
+  --color-forest-placeholder: #3A5A44;
+
+  /* Semantic aliases — updated to dark green theme */
+  --color-rose-primary: #C17A5A;
+  --color-rose-dark: #A65F42;
+  --color-rose-light: #D4956A;
+  --color-apricot: #D4A853;
+  --color-sage: #9BB89E;
+  --color-cream: #0D1F16;
+  --color-blush: #162D20;
+  --color-rose-bg: #162D20;
+  --color-text-primary: #F2EBE0;
+  --color-text-secondary: #9BB89E;
+  --color-text-muted: #5A7A64;
+}
+
+body {
+  font-family: 'Jost', 'Noto Sans TC', sans-serif;
+  background-color: var(--color-forest-dark);
+  color: var(--color-text-primary);
+}
+
+input, textarea, select {
+  background-color: var(--color-forest-mid);
+  color: var(--color-text-primary);
+  border-color: var(--color-forest-border);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-forest-placeholder);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-rose-primary);
+  outline: none;
+}

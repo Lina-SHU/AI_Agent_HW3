@@ -1,0 +1,127 @@
+<div id="app">
+
+  <div v-if="loading" class="flex justify-center py-20 px-20">
+    <div class="w-8 h-8 border-4 border-rose-primary border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+  <div v-else class="flex flex-col lg:flex-row gap-6 lg:gap-10 px-4 md:px-12 lg:px-20 py-8 lg:py-12">
+    <!-- Left: Form -->
+    <div class="flex-1 flex flex-col gap-7">
+      <h1 class="text-[32px] font-normal text-text-primary" style="font-family: 'Cormorant Garamond', serif;">收件資訊</h1>
+
+      <div class="flex flex-col gap-5">
+        <fieldset class="flex flex-col gap-2 text-text-primary">
+          <legend>配送方式</legend>
+          <label><input type="radio" v-model="form.shippingMethod" value="home"> 宅配：120 元，商品滿 1,500 元免基本運費</label>
+          <label><input type="radio" v-model="form.shippingMethod" value="convenience_store"> 超商取貨：60 元（不適用滿額免運）</label>
+          <label><input type="checkbox" v-model="form.isRemote"> 偏遠地區：加收 200 元</label>
+          <label><input type="checkbox" v-model="form.isExpress"> 當日急件：加收 250 元</label>
+          <p>附加費可累加，且不適用滿額免運。超商取貨請填寫門市完整地址。</p>
+        </fieldset>
+        <div class="flex flex-col gap-2">
+          <label class="text-text-secondary text-[13px]">收件人姓名</label>
+          <input
+            v-model="form.recipientName"
+            type="text"
+            placeholder="請輸入收件人姓名"
+            class="w-full bg-forest-mid border border-forest-border rounded-xl px-4 py-3 text-[14px] text-text-primary placeholder:text-forest-placeholder focus:outline-none focus:border-rose-primary transition-colors"
+            :class="{ 'border-rose-primary': errors.recipientName }"
+          />
+          <p v-if="errors.recipientName" class="text-rose-primary text-[12px]">{{ errors.recipientName }}</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-text-secondary text-[13px]">Email</label>
+          <input
+            v-model="form.recipientEmail"
+            type="email"
+            placeholder="請輸入 Email"
+            class="w-full bg-forest-mid border border-forest-border rounded-xl px-4 py-3 text-[14px] text-text-primary placeholder:text-forest-placeholder focus:outline-none focus:border-rose-primary transition-colors"
+            :class="{ 'border-rose-primary': errors.recipientEmail }"
+          />
+          <p v-if="errors.recipientEmail" class="text-rose-primary text-[12px]">{{ errors.recipientEmail }}</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-text-secondary text-[13px]">聯絡電話</label>
+          <input
+            v-model="form.recipientPhone"
+            type="tel"
+            placeholder="請輸入電話號碼"
+            class="w-full bg-forest-mid border border-forest-border rounded-xl px-4 py-3 text-[14px] text-text-primary placeholder:text-forest-placeholder focus:outline-none focus:border-rose-primary transition-colors"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-text-secondary text-[13px]">收件地址</label>
+          <input
+            v-model="form.recipientAddress"
+            type="text"
+            placeholder="請輸入完整地址"
+            class="w-full bg-forest-mid border border-forest-border rounded-xl px-4 py-3 text-[14px] text-text-primary placeholder:text-forest-placeholder focus:outline-none focus:border-rose-primary transition-colors"
+            :class="{ 'border-rose-primary': errors.recipientAddress }"
+          />
+          <p v-if="errors.recipientAddress" class="text-rose-primary text-[12px]">{{ errors.recipientAddress }}</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-text-secondary text-[13px]">備註（選填）</label>
+          <textarea
+            v-model="form.note"
+            rows="3"
+            placeholder="如有特殊需求請填寫..."
+            class="w-full bg-forest-mid border border-forest-border rounded-xl px-4 py-3 text-[14px] text-text-primary placeholder:text-forest-placeholder focus:outline-none focus:border-rose-primary transition-colors resize-none"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Order Summary -->
+    <div class="flex flex-col gap-5 w-full lg:w-[400px] lg:shrink-0">
+      <div class="bg-forest-mid rounded-2xl p-7 flex flex-col gap-5">
+        <h2 class="text-[28px] font-normal text-text-primary" style="font-family: 'Cormorant Garamond', serif;">訂單摘要</h2>
+
+        <div class="flex flex-col gap-3">
+          <div v-for="item in cartItems" :key="item.id" class="flex justify-between text-[13px]">
+            <span class="text-text-secondary">{{ item.product.name }} × {{ item.quantity }}</span>
+            <span class="text-text-primary">NT$ {{ (item.product.price * item.quantity).toLocaleString() }}</span>
+          </div>
+        </div>
+
+        <div class="h-px bg-forest-border"></div>
+
+        <div class="flex justify-between text-[13px]">
+          <span class="text-text-secondary">商品小計</span>
+          <span class="text-text-primary">NT$ {{ cartTotal.toLocaleString() }}</span>
+        </div>
+        <div class="flex justify-between text-[13px]">
+          <span class="text-text-secondary">運費</span>
+          <span class="text-text-primary">{{ shipping.shippingFee === 0 ? '免運' : 'NT$ ' + shipping.shippingFee.toLocaleString() }}</span>
+        </div>
+
+        <div class="h-px bg-forest-border"></div>
+
+        <div class="flex justify-between items-baseline">
+          <span class="text-text-primary text-[15px] font-semibold">總計</span>
+          <span class="text-apricot text-[28px]" style="font-family: 'Cormorant Garamond', serif;">
+            NT$ {{ shipping.totalAmount.toLocaleString() }}
+          </span>
+        </div>
+
+        <button
+          @click="submitOrder"
+          :disabled="submitting"
+          class="w-full bg-rose-primary text-text-primary py-4 rounded-full text-[15px] font-medium hover:bg-rose-dark transition-colors disabled:opacity-40"
+        >
+          {{ submitting ? '處理中...' : '確認送出訂單' }}
+        </button>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 text-text-muted text-[12px]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        安全加密結帳
+      </div>
+    </div>
+  </div>
+
+</div>

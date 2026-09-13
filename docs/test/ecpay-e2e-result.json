@@ -1,0 +1,15 @@
+{
+  "verifiedAt": "2026-09-13T14:20:27.771Z",
+  "orderId": "a8750884-6754-4693-8ed0-9052a3c8d38e",
+  "orderNo": "ORD-20260913-89867",
+  "status": "paid",
+  "subtotal": 1680,
+  "shippingFee": 60,
+  "totalAmount": 1740,
+  "paymentEnvironment": "ECPay staging",
+  "returnedUrl": "http://localhost:3001/orders/a8750884-6754-4693-8ed0-9052a3c8d38e",
+  "screenshots": [
+    "ecpay-payment-success.png",
+    "ecpay-store-paid.png"
+  ]
+}

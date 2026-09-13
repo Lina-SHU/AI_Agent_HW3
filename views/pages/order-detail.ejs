@@ -1,0 +1,239 @@
+<div id="app" data-order-id="<%= orderId %>" data-payment-result="<%= paymentResult %>">
+
+  <!-- Loading -->
+  <div v-if="loading" class="min-h-[60vh] flex items-center justify-center">
+    <div class="flex flex-col items-center gap-4">
+      <div class="w-7 h-7 border-2 border-rose-primary border-t-transparent rounded-full animate-spin"></div>
+      <p class="text-text-muted text-[11px] tracking-[0.25em] uppercase">載入中</p>
+    </div>
+  </div>
+
+  <template v-else-if="order">
+    <div class="od-page px-5 md:px-10 lg:px-16 xl:px-24 py-10 lg:py-14">
+
+      <!-- Page Header -->
+      <div class="od-header mb-8 lg:mb-12">
+        <div class="flex items-end justify-between gap-4">
+          <div>
+            <p class="text-text-muted text-[10px] tracking-[0.25em] uppercase mb-2">Order Details</p>
+            <h1 class="text-[38px] lg:text-[54px] font-light italic leading-[1] text-text-primary" style="font-family:'Cormorant Garamond',serif;">訂單詳情</h1>
+          </div>
+          <span
+            class="text-[10px] tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border shrink-0 self-center"
+            :class="statusMap[order.status]?.cls || 'border-forest-border text-text-muted bg-transparent'"
+          >
+            {{ statusMap[order.status]?.label || order.status }}
+          </span>
+        </div>
+        <div class="h-px bg-forest-border mt-5"></div>
+      </div>
+
+      <!-- Two-column on desktop, single on mobile -->
+      <div class="lg:grid lg:grid-cols-2 gap-8 xl:gap-14 items-start">
+
+        <!-- ── LEFT SIDEBAR ── -->
+        <aside class="flex flex-col gap-5 mb-7 lg:mb-0 lg:sticky lg:top-6">
+
+          <!-- Order Number Card -->
+          <div class="od-card-no relative bg-forest-mid border border-forest-border rounded-2xl p-6 overflow-hidden">
+            <div class="od-card-deco absolute -right-2 -top-3 leading-none select-none pointer-events-none text-forest-border/30" style="font-family:'Cormorant Garamond',serif;font-size:96px;font-weight:300;">#</div>
+            <p class="text-text-muted text-[10px] tracking-[0.22em] uppercase mb-3 relative">訂單編號</p>
+            <p class="text-text-primary text-[12px] font-medium font-mono break-all relative leading-relaxed">{{ order.order_no }}</p>
+            <div class="h-px bg-forest-border mt-4 mb-4"></div>
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-text-muted tracking-wide">建立日期</span>
+              <span class="text-text-secondary">{{ new Date(order.created_at).toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) }}</span>
+            </div>
+          </div>
+
+          <!-- Recipient Card -->
+          <div class="od-card-recipient bg-forest-mid border border-forest-border rounded-2xl p-6">
+            <h2 class="text-[10px] tracking-[0.22em] uppercase text-text-muted mb-5">收件資訊</h2>
+            <div class="flex flex-col gap-4">
+              <div>
+                <p class="text-text-muted text-[10px] tracking-[0.18em] uppercase mb-1">收件人</p>
+                <p class="text-text-primary text-[13px]">{{ order.recipient_name }}</p>
+              </div>
+              <div>
+                <p class="text-text-muted text-[10px] tracking-[0.18em] uppercase mb-1">Email</p>
+                <p class="text-text-secondary text-[13px] break-all">{{ order.recipient_email }}</p>
+              </div>
+              <div>
+                <p class="text-text-muted text-[10px] tracking-[0.18em] uppercase mb-1">配送地址</p>
+                <p class="text-text-secondary text-[13px] leading-relaxed">{{ order.recipient_address }}</p>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- ── RIGHT MAIN ── -->
+        <section class="flex flex-col gap-5">
+
+          <!-- Payment Success Banner -->
+          <div
+            v-if="paymentResult === 'success'"
+            class="od-success relative overflow-hidden rounded-2xl border border-sage/40 bg-forest-mid px-6 py-6 sm:px-8"
+          >
+            <!-- Soft sage glow -->
+            <div class="od-success-glow absolute -left-16 -top-16 w-56 h-56 rounded-full bg-sage/15 blur-3xl pointer-events-none"></div>
+            <!-- Botanical watermark -->
+            <div class="absolute -right-3 -bottom-10 text-sage/10 select-none pointer-events-none leading-none" style="font-size:130px;font-family:'Cormorant Garamond',serif;">❀</div>
+
+            <div class="relative flex items-center gap-5 sm:gap-6">
+              <!-- Animated check badge -->
+              <span class="od-success-badge shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-sage/15 border border-sage/50 flex items-center justify-center">
+                <svg viewBox="0 0 24 24" fill="none" class="w-7 h-7 sm:w-8 sm:h-8">
+                  <path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="od-success-check text-sage"/>
+                </svg>
+              </span>
+              <div class="min-w-0">
+                <p class="text-sage text-[10px] tracking-[0.3em] uppercase mb-1.5">Payment Confirmed</p>
+                <h2 class="text-text-primary text-[28px] sm:text-[34px] font-light italic leading-none" style="font-family:'Cormorant Garamond',serif;">付款成功</h2>
+                <p class="text-text-secondary text-[12px] sm:text-[13px] mt-2 leading-relaxed">感謝您的購買，我們已收到您的款項，將盡快為您安排出貨。</p>
+              </div>
+            </div>
+
+            <!-- Shimmer accent line -->
+            <div class="od-success-line relative mt-5 h-px bg-sage/25 overflow-hidden">
+              <div class="od-success-shimmer absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-sage/80 to-transparent"></div>
+            </div>
+          </div>
+
+          <!-- Other Payment Result Alert -->
+          <div
+            v-else-if="paymentResult && paymentMessages[paymentResult]"
+            class="od-alert flex items-center gap-3 rounded-xl px-5 py-3.5 text-[12px] tracking-wide"
+            :class="paymentMessages[paymentResult].cls"
+          >
+            <span class="text-[15px] shrink-0">{{ paymentResult === 'cancel' ? '◎' : '✕' }}</span>
+            <span>{{ paymentMessages[paymentResult].text }}</span>
+          </div>
+
+          <!-- Items Block -->
+          <div class="od-items bg-forest-mid border border-forest-border rounded-2xl overflow-hidden">
+
+            <!-- Block header -->
+            <div class="px-6 py-4 border-b border-forest-border flex items-center justify-between">
+              <h2 class="text-[10px] tracking-[0.22em] uppercase text-text-muted">商品明細</h2>
+              <span class="text-text-muted text-[11px]">{{ order.items.length }} 件</span>
+            </div>
+
+            <!-- Item rows -->
+            <div class="od-item-list">
+              <div
+                v-for="(item, idx) in order.items"
+                :key="item.id"
+                class="od-item px-6 py-4 flex items-center gap-4 border-b border-forest-border/60 last:border-b-0 transition-colors duration-150 hover:bg-forest-subtle/40"
+                :style="'animation-delay:' + (idx * 0.06) + 's'"
+              >
+                <!-- Index -->
+                <span class="hidden sm:block text-forest-border text-[13px] w-5 shrink-0 select-none" style="font-family:'Cormorant Garamond',serif;">{{ String(idx+1).padStart(2,'0') }}</span>
+
+                <!-- Name + unit price -->
+                <div class="flex-1 min-w-0">
+                  <p class="text-text-primary text-[14px] leading-snug">{{ item.product_name }}</p>
+                  <p class="text-text-muted text-[11px] mt-0.5">NT$ {{ item.product_price.toLocaleString() }} / 件</p>
+                </div>
+
+                <!-- Qty -->
+                <div class="shrink-0 text-center hidden sm:block w-12">
+                  <p class="text-text-muted text-[10px] tracking-wider uppercase mb-0.5">數量</p>
+                  <p class="text-text-secondary text-[14px]">{{ item.quantity }}</p>
+                </div>
+
+                <!-- Subtotal -->
+                <div class="shrink-0 text-right min-w-[90px]">
+                  <p class="text-text-muted text-[10px] tracking-wider uppercase mb-0.5 hidden sm:block">小計</p>
+                  <p class="text-text-primary text-[16px] font-light leading-none" style="font-family:'Cormorant Garamond',serif;">
+                    NT$ {{ (item.product_price * item.quantity).toLocaleString() }}
+                  </p>
+                  <p class="text-text-muted text-[11px] mt-0.5 sm:hidden">× {{ item.quantity }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Total row -->
+            <div class="od-total px-6 py-5 bg-forest-deep/60 flex items-center justify-between">
+              <p class="text-text-muted text-[10px] tracking-[0.22em] uppercase">訂單總計</p>
+              <span class="text-text-secondary text-[13px]">商品小計 NT$ {{ order.subtotal.toLocaleString() }} ／ 運費 NT$ {{ order.shipping_fee.toLocaleString() }}</span>
+              <span class="text-apricot text-[34px] font-light leading-none" style="font-family:'Cormorant Garamond',serif;">NT$ {{ order.total_amount.toLocaleString() }}</span>
+            </div>
+          </div>
+
+          <!-- Payment Actions -->
+          <div v-if="order.status === 'pending'" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+            <button
+              @click="goToEcpay"
+              :disabled="paying || verifying"
+              class="od-pay-btn sm:w-auto text-center bg-rose-primary text-text-primary px-9 py-3.5 rounded-full text-[12px] font-medium tracking-[0.12em] uppercase transition-all duration-200 hover:bg-rose-dark active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {{ paying ? '導向付款頁...' : verifying ? '確認付款結果...' : '前往綠界付款' }}
+            </button>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </template>
+
+</div>
+
+<style>
+/* ── Entrance animations ── */
+.od-page      { animation: odFadeUp .45s cubic-bezier(.22,1,.36,1) both; }
+.od-header    { animation: odFadeUp .45s cubic-bezier(.22,1,.36,1) .05s both; }
+.od-card-no   { animation: odFadeUp .5s cubic-bezier(.22,1,.36,1) .1s both; }
+.od-card-recipient { animation: odFadeUp .5s cubic-bezier(.22,1,.36,1) .16s both; }
+.od-alert     { animation: odFadeUp .4s cubic-bezier(.22,1,.36,1) .12s both; }
+
+/* ── Payment success banner ── */
+.od-success { animation: odSuccessIn .55s cubic-bezier(.22,1,.36,1) both; }
+@keyframes odSuccessIn {
+  from { opacity: 0; transform: translateY(16px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.od-success-badge { animation: odBadgePop .5s cubic-bezier(.34,1.56,.64,1) .25s both; }
+@keyframes odBadgePop {
+  from { opacity: 0; transform: scale(.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.od-success-check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: odCheckDraw .45s ease-out .55s forwards;
+}
+@keyframes odCheckDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+.od-success-glow { animation: odGlowPulse 4s ease-in-out 1s infinite; }
+@keyframes odGlowPulse {
+  0%, 100% { opacity: .7; }
+  50%      { opacity: 1; transform: scale(1.15); }
+}
+
+.od-success-shimmer { animation: odShimmer 2.8s ease-in-out 1s infinite; left: -35%; }
+@keyframes odShimmer {
+  0%   { left: -35%; }
+  60%, 100% { left: 100%; }
+}
+.od-items     { animation: odFadeUp .5s cubic-bezier(.22,1,.36,1) .18s both; }
+.od-item      { animation: odFadeUp .4s cubic-bezier(.22,1,.36,1) both; }
+.od-total     { animation: odFadeUp .4s cubic-bezier(.22,1,.36,1) .28s both; }
+
+@keyframes odFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Decorative hash */
+.od-card-deco { font-variant-numeric: lining-nums; }
+
+/* Pay button glow */
+.od-pay-btn:hover:not(:disabled) {
+  box-shadow: 0 4px 28px rgba(193,122,90,.35);
+}
+</style>
