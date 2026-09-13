@@ -43,3 +43,4 @@ public/css/output.css
 # Playwright diagnostics (success evidence lives in docs/test/)
 test-results/
 playwright-report/
+.playwright-profile/
